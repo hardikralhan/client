@@ -13,8 +13,8 @@ function App() {
       <Toaster></Toaster>
       <>
         <Routes>
-          <Route exact path="/" element={<Login/>}/>
-          <Route exact path="/signUp" element={<SignUp/>}/>
+          <Route exact path="/login" element={<Login/>}/>
+          <Route exact path="/" element={<SignUp/>}/>
           <Route exact path="/dashboard" element={<Dashboard/>}/>
           <Route exact path="/cuisine" element={<Cuisine/>}/>
           <Route exact path="/recipe" element={<Recipe/>}/>

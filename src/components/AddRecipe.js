@@ -33,7 +33,7 @@ export const AddRecipe = (props) => {
   const navigate = useNavigate();
 
   if(!localStorage.getItem("token")){
-    navigate("/")
+    navigate("/login")
     return <h1 className='text-9xl'>unauthorized</h1>
     }
 

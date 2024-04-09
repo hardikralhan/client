@@ -19,7 +19,7 @@ export default function () {
         }
     })
     if(!localStorage.getItem("token")){
-        navigate("/")
+        navigate("/login")
         return <h1 className='text-9xl'>unauthorized</h1>
     }
     if(loading) return <h1 className='text-9xl'>Loading</h1>

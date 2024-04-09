@@ -29,7 +29,7 @@ export default function Dashboard() {
             variables: variables
         })
         if(!localStorage.getItem("token")){
-            navigate("/")
+            navigate("/login")
             return <h1 className='text-9xl'>unauthorized</h1>
         }
         const filterOnClick = () =>{

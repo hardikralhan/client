@@ -20,7 +20,7 @@ export const SignUp = (props) => {
     console.log(error);
   }
   if(data){
-    navigate("/")
+    navigate("/login")
   }
 
   const handleChange = (e)=>{
