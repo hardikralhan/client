@@ -37,17 +37,18 @@ export const AddRecipe = (props) => {
     return <h1 className='text-9xl'>unauthorized</h1>
     }
 
-  const validateData = () =>{
-    return true
-    // if(email && password){
-    //     return true   
-    // } 
-    // else return false
+  const validateData = () =>{debugger
+    if(ingredients.length != 0 && instructions.length != 0
+    && difficulty && cuisine && tags.length != 0 && mealType.length != 0){
+        ToastError("click on Add button as well")
+        return true
+    }
+    else return false
   }
 
   if(loading) return <h1>Loading</h1>
   if(error){ 
-    ToastError("eoeoe")
+    ToastError("")
     console.log(error);
   }
   if(data){
