@@ -37,3 +37,19 @@ Recipe data comes from API given
 2. Browse recipes, filter them based on your preferences.
 3. To add a new recipe, make sure you are logged in. Navigate to the "Add Recipe" section and fill in the required details.
 
+## Create Account
+![image](https://github.com/hardikralhan/client/assets/77456767/a59984dd-87d6-4bd2-801c-963e12ca55e1)
+
+## sign in
+![image](https://github.com/hardikralhan/client/assets/77456767/df120839-4361-42bb-b592-6d06c06afb66)
+
+## dashboard
+![image](https://github.com/hardikralhan/client/assets/77456767/cf1cac4e-588f-4403-ba55-1efd33317129)
+
+It has pagination set to 10 , we can add recipe, filter as well based on cuisine, difficulty....
+search single recipe
+
+## Recipe details
+
+![image](https://github.com/hardikralhan/client/assets/77456767/2c524263-41a0-413b-ab72-881945d0f250)
+
