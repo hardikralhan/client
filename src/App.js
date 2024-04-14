@@ -6,6 +6,7 @@ import Dashboard from "./components/Dashboard";
 import Cuisine from "./components/Cuisine";
 import Recipe from "./components/Recipe";
 import { AddRecipe } from "./components/AddRecipe";
+import Filter from "./components/Filter";
 
 function App() {
   return (
@@ -19,6 +20,7 @@ function App() {
           <Route exact path="/cuisine" element={<Cuisine/>}/>
           <Route exact path="/recipe" element={<Recipe/>}/>
           <Route exact path="/add-recipe" element={<AddRecipe/>}/>
+          <Route exact path="/filter" element={<Filter/>}/>
         </Routes>
       </>
     </>

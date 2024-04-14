@@ -3,7 +3,10 @@ import {
     useQuery
 } from '@apollo/client'
 import {
-    GET_ALL_RECIPES,GET_ALL_RECIPES_BY_CUISINE, GET_ALL_RECIPES_BY_DIFFICULTY
+    GET_ALL_RECIPES,GET_ALL_RECIPES_BY_CUISINE,
+    GET_ALL_RECIPES_BY_DIFFICULTY,
+    GET_ALL_RECIPES_BY_MEALTYPE,
+    GET_ALL_RECIPES_BY_TAGS
 } from '../gqlOperations/queries'
 import { Link } from 'react-router-dom'
 import { useNavigate } from "react-router-dom";
@@ -20,32 +23,36 @@ export default function Dashboard() {
     let query
     let variables = {}
     
-    // if(filter == 'all_recipes'){
-        query = GET_ALL_RECIPES
-        variables = {page: pageNumber}
-        // }
-        
-        let {loading,error,data,refetch} = useQuery(query,{
-            variables: variables
-        })
-        if(!localStorage.getItem("token")){
-            navigate("/login")
-            return <h1 className='text-9xl'>unauthorized</h1>
-        }
-        const filterOnClick = () =>{
+    query = GET_ALL_RECIPES
+    variables = {page: pageNumber}
+    
+    let {loading,error,data} = useQuery(query,{
+        variables: variables
+    })
+    if(!localStorage.getItem("token")){
+        navigate("/login")
+        return <h1 className='text-9xl'>unauthorized</h1>
+    }
+    const filterOnClick = () =>{
         if(filter == 'cuisine'){
             query = GET_ALL_RECIPES_BY_CUISINE
             variables = {page: pageNumber, "cuisine": inputBoxData}  //inputBox
-            array = data.getRecipeByCuisine
+            navigate("/filter", {state: {filter:"cuisine", query: query, variables: variables}})
+            
         }else if(filter == 'mealType'){
+            query = GET_ALL_RECIPES_BY_MEALTYPE
+            variables = {page: pageNumber, "mealType": inputBoxData}  //inputBox
+            navigate("/filter", {state: {filter:"mealType", query: query, variables: variables}})
             
         }else if(filter == 'difficulty'){
             query = GET_ALL_RECIPES_BY_DIFFICULTY
-            variables = {page: pageNumber, "difficulty": "Easy"}
+            variables = {page: pageNumber, "difficulty": inputBoxData}
+            navigate("/filter", {state: {filter:"difficulty", query: query, variables: variables}})
         }else if(filter == 'tags'){
-            query = GET_ALL_RECIPES
+            query = GET_ALL_RECIPES_BY_TAGS
+            variables = {page: pageNumber, "tags": inputBoxData}
+            navigate("/filter", {state: {filter:"tags", query: query, variables: variables}})
         }
-        refetch()
     }
     const handleRecipeButton = () =>{
         navigate('/recipe', { state: inputBoxData });
@@ -57,19 +64,11 @@ export default function Dashboard() {
     }
     let array = []
     if(data){
-        console.log(data)
-        // if(filter == 'all_recipes'){
-            array = data.getAllRecipes
-        // }
-        // else if(filter == 'cuisine'){
-        //     array = data.getRecipeByCuisine
-        // }else if(filter == 'mealType'){
-            
-        // }else if(filter == 'difficulty'){
-        //     array = data.getRecipeByDifficulty
-        // }else if(filter == 'tags'){
-            
-        // }
+        console.log(data)   
+        array = data.getAllRecipes
+        if(data.getAllRecipes.length == 0){
+            setPageNumber(1)
+        }
     }
     
     const handlePreviousClick = () =>{
@@ -142,6 +141,7 @@ export default function Dashboard() {
                     <th className='px-6 py-3'>Image</th>
                     <th className='px-6 py-3'>Cuisine</th>
                     <th className='px-6 py-3'>Meal Type</th>
+                    <th className='px-6 py-3'>Tags</th>
                     <th className='px-6 py-3'>Instructions</th>
                     </tr>       
                 </thead>
@@ -155,6 +155,14 @@ export default function Dashboard() {
                         <td className='px-6 py-4'>{recipe.cuisine}</td>
                         <td className='px-6 py-4'>
                         {recipe.mealType.map((inst,i)=>{
+                            return(
+                                <ul key={i}>
+                                <li className="text-justify">{inst}</li>
+                                </ul>
+                            )
+                        })}</td>
+                        <td className='px-6 py-4'>
+                        {recipe.tags.map((inst,i)=>{
                             return(
                                 <ul key={i}>
                                 <li className="text-justify">{inst}</li>

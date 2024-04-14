@@ -59,3 +59,33 @@ query getAllQuery($name: String!) {
         }
     }
 `
+export const GET_ALL_RECIPES_BY_MEALTYPE = gql`
+query getAllQuery($mealType: String!, $page:Int) {
+        getRecipeByMealtype(mealType: $mealType, page: $page) {
+            name
+            cuisine
+            ingredients
+            difficulty
+            tags
+            mealType
+            image
+            rating
+            instructions
+        }
+    }
+`
+export const GET_ALL_RECIPES_BY_TAGS = gql`
+query getAllQuery($tags: String!, $page:Int) {
+        getRecipeByTags(tags: $tags,page: $page) {
+            name
+            cuisine
+            ingredients
+            difficulty
+            tags
+            mealType
+            image
+            rating
+            instructions
+        }
+    }
+`

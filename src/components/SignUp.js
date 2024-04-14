@@ -142,6 +142,10 @@ export const SignUp = (props) => {
           />
         </div>
       </div>
+      <p className="text-center text-sm text-gray-500">
+        Already a user ?
+        <Link className="underline text-base" to="/login">Login</Link>
+      </p>
 
       <button
        onClick={handleClick}
